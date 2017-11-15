@@ -6,7 +6,7 @@ from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument("-n","--name", type=str,help="The name that is greeted")
 args = parser.parse_args()
-name=(args.name if args.name != None else input("Enter a Name \n"))
+name=(args.name.upper() if args.name != None else input("Enter a Name \n").upper())
 def make_img():
     y, x = [int(a) for a in os.popen('stty size', 'r').read().split()]
     size=cv2.getTextSize(name, cv2.FONT_HERSHEY_SIMPLEX, 1, thickness=2)[0]
@@ -18,7 +18,7 @@ def make_img():
 x,y,siz,frame=make_img()
 c=0
 while True:
-    if c==siz:
+    if c==siz+x:
         c=0
     cy, cx = [int(a) for a in os.popen('stty size', 'r').read().split()]
     if cx!=x or cy!=y:
@@ -28,7 +28,7 @@ while True:
     
     os.system('clear')
     #sys.stdout.flush()
-    print(*[i[c:c+cx-1].rjust(cx-x,"0").ljust(x,"0") for i in frame],sep="\n")
+    print(*[i.rjust(cx+siz,"0")[c:c+cx].ljust(cx,"0") for i in frame],sep="\n")
     c+=1
     time.sleep(.01) 
     #(i[:(c+cx)%cx]if (c+cx)>siz else "")
