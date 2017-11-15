@@ -37,7 +37,7 @@ def announce(name,char=("1","0")): #
         os.system('clear')
         #Print each line in each frame 
         #print(*[i[c:c+cx] for i in frame],sep="\n")
-        print(*[i.rjust(cx+siz,"2")[c:c+cx].ljust(cx,"3") for i in frame],sep="\n")
+        print(*[i.rjust(cx+siz,char[1])[c:c+cx].ljust(cx,char[1]) for i in frame],sep="\n")
         c+=1
         time.sleep(.01) 
         #(i[:(c+cx)%cx]if (c+cx)>siz else "")
