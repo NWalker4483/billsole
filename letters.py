@@ -21,7 +21,9 @@ while True:
     if c==siz+x:
         c=0
     cy, cx = [int(a) for a in os.popen('stty size', 'r').read().split()]
-    if cx!=x or cy!=y:
+    if cx!=x:
+        y, x = [int(a) for a in os.popen('stty size', 'r').read().split()]
+    if cy!=y:
         x,y,siz,frame=make_img()
     # if cx!=x or cy!=y:
     #    break
