@@ -42,4 +42,9 @@ def announce(name,char=("1","0")): #
         c+=1
         time.sleep(.01) 
         #(i[:(c+cx)%cx]if (c+cx)>siz else "")
-announce(_name)
+try:
+    announce(_name)
+except KeyboardInterrupt:
+    pass
+
+    
